@@ -99,6 +99,26 @@ for (const i of rangeRight(nums.length)) {
 result; // [4, 2, 4, -1, -1]
 ```
 
+### Monotonic Queue
+```ts
+// Sliding window maximum
+// Input: [1,3,-1,-3,3,3], k=3 → Output: [3,3,3,3]
+import { range } from "algo-utils";
+
+const nums = [1, 3, -1, -3, 3, 3];
+const k = 3;
+const result: number[] = [];
+const queue = new MonotonicQueue<number>();
+
+for (const i of range(nums.length)) {
+  if (i >= k && nums[i - k] === queue.front()) queue.pop();
+  queue.dequeueWhile((front) => nums[i] >= front);
+  queue.push(nums[i]);
+  if (i >= k - 1) result.push(queue.peek()!);
+}
+result; // [3, 3, 3, 3]
+```
+
 ### Swapping array elements
 ```ts
 // Quick in-place swap without temp variable
@@ -123,6 +143,7 @@ swap(arr, i, j);
 | `AdjacencyList<T>` | Graph adjacency list with directed/undirected edge support |
 | `topologicalSort(adj)` | Kahn's algorithm - returns sorted order or null if cycle exists |
 | `MonotonicStack` | Stack with popWhile for next greater/smaller problems |
+| `MonotonicQueue` | Queue for sliding window maximum/minimum |
 
 ### Lodash Re-exports
 

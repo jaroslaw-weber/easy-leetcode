@@ -195,3 +195,51 @@ export class MonotonicStack<T = number> {
     return this.stack.length;
   }
 }
+
+/**
+ * Monotonic queue for O(n) sliding window problems like:
+ * - Sliding Window Maximum/Minimum
+ * - Longest Substring with At Most K Distinct Characters
+ *
+ * Use popWhile to maintain monotonic property
+ */
+export class MonotonicQueue<T = number> {
+  private deque: T[] = [];
+
+  /** Push to back */
+  push(item: T): void {
+    this.deque.push(item);
+  }
+
+  /** Pop from front (for when element leaves window) */
+  pop(): T | undefined {
+    return this.deque.shift();
+  }
+
+  /** Pop elements while predicate returns true (from front) */
+  dequeueWhile(predicate: (item: T) => boolean): void {
+    while (this.deque.length > 0 && predicate(this.deque[0])) {
+      this.deque.shift();
+    }
+  }
+
+  /** Get front element without removing */
+  front(): T | undefined {
+    return this.deque[0];
+  }
+
+  /** Get max/min without removing (front) */
+  peek(): T | undefined {
+    return this.front();
+  }
+
+  /** Check if empty */
+  get isEmpty(): boolean {
+    return this.deque.length === 0;
+  }
+
+  /** Current size */
+  get size(): number {
+    return this.deque.length;
+  }
+}

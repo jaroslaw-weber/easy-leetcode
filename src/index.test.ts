@@ -7,6 +7,8 @@ import {
   idxToChar,
   dirs4,
   dirs8,
+  createGrid,
+  gridToString,
 } from "./index";
 import {
   chunk,
@@ -213,6 +215,54 @@ describe("custom utils", () => {
         [-1, 1],
         [-1, -1],
       ]);
+    });
+  });
+
+  describe("createGrid", () => {
+    it("creates grid with default fill value", () => {
+      const grid = createGrid(2, 3);
+      expect(grid).toEqual([
+        [0, 0, 0],
+        [0, 0, 0],
+      ]);
+    });
+
+    it("creates grid with custom fill value", () => {
+      const grid = createGrid(2, 2, "x");
+      expect(grid).toEqual([
+        ["x", "x"],
+        ["x", "x"],
+      ]);
+    });
+
+    it("creates grid with false fill value", () => {
+      const grid = createGrid(2, 2, false);
+      expect(grid).toEqual([
+        [false, false],
+        [false, false],
+      ]);
+    });
+  });
+
+  describe("gridToString", () => {
+    it("converts grid to string", () => {
+      const grid = [
+        [1, 2],
+        [3, 4],
+      ];
+      expect(gridToString(grid)).toBe(" 1  2\n 3  4");
+    });
+
+    it("handles custom cell width", () => {
+      const grid = [
+        [1, 10],
+        [100, 1000],
+      ];
+      expect(gridToString(grid, 4)).toBe("   1   10\n 100 1000");
+    });
+
+    it("handles empty grid", () => {
+      expect(gridToString([])).toBe("");
     });
   });
 });

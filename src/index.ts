@@ -368,3 +368,27 @@ export function getNodeAt(head: ListNode | null, steps: number): ListNode | null
   }
   return curr;
 }
+
+/**
+ * Create a 2D grid filled with a value
+ * @param rows - Number of rows
+ * @param cols - Number of columns
+ * @param fillValue - Value to fill (default 0)
+ * @example createGrid(3, 4, 0) // [[0,0,0,0], [0,0,0,0], [0,0,0,0]]
+ */
+export function createGrid<T = number>(rows: number, cols: number, fillValue: T = 0 as T): T[][] {
+  return Array.from({ length: rows }, () => Array(cols).fill(fillValue));
+}
+
+/**
+ * Convert grid to string for debugging
+ * @param grid - 2D array to stringify
+ * @param cellWidth - Width of each cell (default 2)
+ * @example gridToString([[1,2],[3,4]]) // "1  2\n3  4"
+ */
+export function gridToString<T>(grid: T[][], cellWidth: number = 2): string {
+  if (grid.length === 0) return "";
+  return grid.map(row => 
+    row.map(cell => String(cell).padStart(cellWidth)).join(" ")
+  ).join("\n");
+}

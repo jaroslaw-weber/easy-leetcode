@@ -129,6 +129,12 @@ counter.increase("banana", 3); // 3
 counter.get("apple");          // 2
 counter.decrease("banana");    // 2
 counter.get("banana");         // 2
+
+// Or initialize from an array
+const counter2 = new Counter(["a", "b", "a", "c", "a"]);
+counter2.get("a"); // 3
+counter2.get("b"); // 1
+counter2.get("c"); // 1
 ```
 
 ### Swapping array elements

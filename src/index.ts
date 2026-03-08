@@ -47,6 +47,11 @@ export function idxToChar(i: number): string {
   return String.fromCharCode(i + 65);
 }
 
+/** Get window size from left and right indices (inclusive) */
+export function getWindowSize(left: number, right: number): number {
+  return right - left + 1;
+}
+
 export class UnionFind {
   /** Parent array - each element points to its parent in the set */
   parent: number[];
@@ -90,7 +95,8 @@ export class UnionFind {
 
 /** Graph adjacency list - stores outgoing edges for each node */
 export class AdjacencyList<T = number> {
-  private map: DefaultMap<T, T[]>;
+  /** Internal map of node -> neighbors. Direct access for advanced operations. */
+  readonly map: DefaultMap<T, T[]>;
 
   constructor() {
     this.map = new DefaultMap<T, T[]>(() => []);

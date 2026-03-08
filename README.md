@@ -32,6 +32,9 @@ for (const [dr, dc] of dirs4) {
 const dp = createGrid(m, n, 0);           // m×n grid filled with 0
 const visited = createGrid(rows, cols, false);  // boolean grid
 
+// Get grid dimensions easily
+const { rows, cols } = getGridSize(grid);
+
 // Debug your grid with pretty printing
 console.log(gridToString(grid));        // " 1  2\n 3  4"
 console.log(gridToString(grid, 4));     // custom cell width: 4
@@ -76,11 +79,20 @@ uf.connected(0, 3); // false
 
 ### Adjacency List
 ```ts
-// Generic graph representation
-const adj = new AdjacencyList<number>();
-adj.addUndirectedEdge(1, 2);
-adj.addUndirectedEdge(1, 3);
-adj.getNeighbors(1); // [2, 3]
+// Generic graph representation with exposed internal map for flexibility
+const adj = new AdjacencyList<string>();
+adj.addEdge("JFK", "LAX");
+adj.addEdge("JFK", "SFO");
+
+// Basic operations
+adj.getNeighbors("JFK"); // ["LAX", "SFO"]
+
+// Direct map access for advanced operations (e.g., Reconstruct Itinerary)
+adj.map.get("JFK").sort();  // Sort neighbors
+adj.map.delete("LAX");      // Remove node
+for (const [node, neighbors] of adj.map.entries()) {
+  console.log(`${node} -> ${neighbors}`);
+}
 ```
 
 ### Topological Sort
@@ -159,6 +171,19 @@ const colors = [2, 0, 2, 1, 1, 0];
 bucketSort(colors, 0, 2); // [0, 0, 1, 1, 2, 2]
 ```
 
+### Working with Intervals
+```ts
+// Use first/last from lodash for readable interval access
+import { first, last } from "algo-utils";
+
+const interval: [number, number] = [1, 5];
+first(interval); // 1 (start)
+last(interval);  // 5 (end)
+
+// Perfect for interval problems like Merge Intervals, Meeting Rooms
+intervals.sort((a, b) => first(a) - first(b));
+```
+
 ### Swapping array elements
 ```ts
 // Quick in-place swap without temp variable
@@ -199,13 +224,14 @@ const reversed = reverseList(head);  // 3 -> 2 -> 1
 | `inBounds(grid, r, c)` | Check if coordinates are within grid bounds |
 | `createGrid(rows, cols, val?)` | Create a 2D grid filled with a value (default 0) |
 | `gridToString(grid, width?)` | Convert grid to formatted string for debugging |
+| `getGridSize(grid)` | Get grid dimensions as `{ rows, cols }` |
 | `getKey(r, c)` | Create a string key from row and column |
 | `charToIdx(c)` | Convert 'A'-'Z' to 0-25 |
 | `idxToChar(i)` | Convert 0-25 to 'A'-'Z' |
 | `dirs4` | 4-directional movement vectors |
 | `dirs8` | 8-directional movement vectors |
 | `UnionFind` | Disjoint set union with path compression and union by rank |
-| `AdjacencyList<T>` | Graph adjacency list with directed/undirected edge support |
+| `AdjacencyList<T>` | Graph adjacency list with exposed `.map` for direct access |
 | `topologicalSort(adj)` | Kahn's algorithm - returns sorted order or null if cycle exists |
 | `MonotonicStack` | Stack with popWhile for next greater/smaller problems |
 | `MonotonicQueue` | Queue for sliding window maximum/minimum |
@@ -230,12 +256,12 @@ const reversed = reverseList(head);  // 3 -> 2 -> 1
 
 ```ts
 // LeetCode 200 - Number of Islands
-import { inBounds, dirs4 } from "algo-utils";
+import { inBounds, dirs4, getGridSize } from "algo-utils";
 
 function numIslands(grid: string[][]): number {
   if (!grid.length) return 0;
   let count = 0;
-  const rows = grid.length, cols = grid[0].length;
+  const { rows, cols } = getGridSize(grid);
   
   function dfs(r: number, c: number) {
     if (!inBounds(grid, r, c) || grid[r][c] !== "1") return;

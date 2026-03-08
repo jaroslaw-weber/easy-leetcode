@@ -154,6 +154,21 @@ bucketSort(colors, 0, 2); // [0, 0, 1, 1, 2, 2]
 swap(arr, i, j);
 ```
 
+### Linked List
+```ts
+// Standard LeetCode ListNode with utilities
+const head = new ListNode(1, new ListNode(2, new ListNode(3)));
+
+getListLength(head); // 3
+getTail(head).val;   // 3
+getNodeAt(head, 2);  // ListNode { val: 2, next: ... }
+
+// Useful for problems like:
+// - Middle of the Linked List
+// - Linked List Cycle II
+// - Remove Nth Node From End of List
+```
+
 ## API
 
 ### Custom Utils
@@ -175,6 +190,10 @@ swap(arr, i, j);
 | `MonotonicQueue` | Queue for sliding window maximum/minimum |
 | `Counter` | Counter class with get/set/increase/decrease using DefaultMap |
 | `bucketSort(arr, min, max)` | O(n + k) counting sort for integers in range [min, max] |
+| `ListNode` | Standard LeetCode linked list node class |
+| `getListLength(head)` | Get the length of a linked list |
+| `getTail(head)` | Get the tail (last node) of a linked list |
+| `getNodeAt(head, steps)` | Get node at position (1-indexed) from head |
 
 ### Lodash Re-exports
 

@@ -326,3 +326,45 @@ export function bucketSort(arr: number[], min: number, max: number): number[] {
   
   return result;
 }
+
+/** Linked list node - standard LeetCode structure */
+export class ListNode {
+  val: number;
+  next: ListNode | null;
+
+  constructor(val?: number, next?: ListNode | null) {
+    this.val = val ?? 0;
+    this.next = next ?? null;
+  }
+}
+
+/** Get the length of a linked list */
+export function getListLength(head: ListNode | null): number {
+  let length = 0;
+  let current = head;
+  while (current !== null) {
+    length++;
+    current = current.next;
+  }
+  return length;
+}
+
+/** Get the tail (last node) of a linked list */
+export function getTail(head: ListNode | null): ListNode | null {
+  if (head === null) return null;
+  let current = head;
+  while (current.next !== null) {
+    current = current.next;
+  }
+  return current;
+}
+
+/** Get node at position (1-indexed) from head */
+export function getNodeAt(head: ListNode | null, steps: number): ListNode | null {
+  if (head === null) return null;
+  let curr: ListNode | null = head;
+  for (let i = 1; i < steps && curr !== null; i++) {
+    curr = curr.next;
+  }
+  return curr;
+}

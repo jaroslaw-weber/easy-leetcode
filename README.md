@@ -137,6 +137,17 @@ counter2.get("b"); // 1
 counter2.get("c"); // 1
 ```
 
+### Bucket Sort
+```ts
+// O(n + k) sort for integers in a known range
+const nums = [2, 0, 2, 1, 1, 0];
+bucketSort(nums, 0, 2); // [0, 0, 1, 1, 2, 2]
+
+// Perfect for Sort Colors (LC 75)
+const colors = [2, 0, 2, 1, 1, 0];
+bucketSort(colors, 0, 2); // [0, 0, 1, 1, 2, 2]
+```
+
 ### Swapping array elements
 ```ts
 // Quick in-place swap without temp variable
@@ -163,6 +174,7 @@ swap(arr, i, j);
 | `MonotonicStack` | Stack with popWhile for next greater/smaller problems |
 | `MonotonicQueue` | Queue for sliding window maximum/minimum |
 | `Counter` | Counter class with get/set/increase/decrease using DefaultMap |
+| `bucketSort(arr, min, max)` | O(n + k) counting sort for integers in range [min, max] |
 
 ### Lodash Re-exports
 

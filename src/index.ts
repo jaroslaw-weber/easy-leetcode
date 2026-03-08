@@ -299,3 +299,30 @@ export class Counter {
     return this.map.has(key);
   }
 }
+
+/**
+ * Bucket sort (counting sort) for integers in a known range
+ * Time: O(n + k), Space: O(k) where k = max - min + 1
+ * @param arr - Array to sort
+ * @param min - Minimum value in the range (inclusive)
+ * @param max - Maximum value in the range (inclusive)
+ * @returns New sorted array
+ * @example bucketSort([2, 0, 2, 1, 1], 0, 2) // [0, 1, 1, 2, 2]
+ */
+export function bucketSort(arr: number[], min: number, max: number): number[] {
+  const bucketSize = max - min + 1;
+  const counts = Array(bucketSize).fill(0);
+  
+  for (const num of arr) {
+    counts[num - min]++;
+  }
+  
+  const result: number[] = [];
+  for (let i = 0; i < bucketSize; i++) {
+    for (let j = 0; j < counts[i]; j++) {
+      result.push(i + min);
+    }
+  }
+  
+  return result;
+}

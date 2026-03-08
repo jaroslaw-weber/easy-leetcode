@@ -122,28 +122,6 @@ function topKFrequent(nums: number[], k: number): number[] {
 }
 ```
 
-## Full Example: Longest Consecutive Sequence
-
-```ts
-// LeetCode 128 - Longest Consecutive Sequence
-import { uniq } from "algo-utils";
-
-function longestConsecutive(nums: number[]): number {
-  if (!nums.length) return 0;
-  const set = new Set(uniq(nums));
-  let maxLen = 0;
-  
-  for (const num of set) {
-    if (!set.has(num - 1)) {
-      let len = 1;
-      while (set.has(num + len)) len++;
-      maxLen = Math.max(maxLen, len);
-    }
-  }
-  return maxLen;
-}
-```
-
 ## Usage
 
 ```ts

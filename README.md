@@ -1,11 +1,11 @@
-# easy-leetcode
+# algo-utils
 
 A utility library for practicing LeetCode-style problems. Focus on solving the core algorithm, not on implementing data structures.
 
 ## Install
 
 ```bash
-npm install easy-leetcode
+npm install algo-utils
 ```
 
 ## Why?
@@ -75,7 +75,7 @@ swap(arr, i, j);
 
 ```ts
 // LeetCode 200 - Number of Islands
-import { inBounds, dirs4 } from "easy-leetcode";
+import { inBounds, dirs4 } from "algo-utils";
 
 function numIslands(grid: string[][]): number {
   if (!grid.length) return 0;
@@ -101,7 +101,7 @@ function numIslands(grid: string[][]): number {
 
 ```ts
 // LeetCode 347 - Top K Frequent Elements
-import { uniq, sortBy, countBy } from "easy-leetcode";
+import { uniq, sortBy, countBy } from "algo-utils";
 
 function topKFrequent(nums: number[], k: number): number[] {
   const freq = countBy(nums);
@@ -115,7 +115,7 @@ function topKFrequent(nums: number[], k: number): number[] {
 
 ```ts
 // LeetCode 128 - Longest Consecutive Sequence
-import { uniq } from "easy-leetcode";
+import { uniq } from "algo-utils";
 
 function longestConsecutive(nums: number[]): number {
   if (!nums.length) return 0;
@@ -140,5 +140,5 @@ import {
   swap, peek, inBounds, dirs4, dirs8, getKey,
   chunk, uniq, flattenDeep, sortBy, range,
   Stack, Queue, Heap, LRUCache 
-} from "easy-leetcode";
+} from "algo-utils";
 ```

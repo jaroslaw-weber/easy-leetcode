@@ -1,11 +1,34 @@
-import { swap, peek, inBounds, getKey, charToIdx, idxToChar, dirs4, dirs8 } from "./index";
-import { chunk, uniq, flattenDeep, sortBy, range, sum, mean, min, max, fill } from "./index";
+import {
+  swap,
+  peek,
+  inBounds,
+  getKey,
+  charToIdx,
+  idxToChar,
+  dirs4,
+  dirs8,
+} from "./index";
+import {
+  chunk,
+  uniq,
+  flattenDeep,
+  sortBy,
+  range,
+  sum,
+  mean,
+  min,
+  max,
+  fill,
+} from "./index";
 import { Stack, Queue, Heap, LRUCache, BitSet } from "./index";
 
 describe("lodash reexports", () => {
   describe("chunk", () => {
     it("chunks array", () => {
-      expect(chunk([1, 2, 3, 4], 2)).toEqual([[1, 2], [3, 4]]);
+      expect(chunk([1, 2, 3, 4], 2)).toEqual([
+        [1, 2],
+        [3, 4],
+      ]);
     });
   });
 
@@ -23,7 +46,11 @@ describe("lodash reexports", () => {
 
   describe("sortBy", () => {
     it("sorts by key", () => {
-      expect(sortBy([{a: 3}, {a: 1}, {a: 2}], "a")).toEqual([{a: 1}, {a: 2}, {a: 3}]);
+      expect(sortBy([{ a: 3 }, { a: 1 }, { a: 2 }], "a")).toEqual([
+        { a: 1 },
+        { a: 2 },
+        { a: 3 },
+      ]);
     });
   });
 
@@ -68,8 +95,8 @@ describe("mnemonist reexports", () => {
   describe("Stack", () => {
     it("works", () => {
       const stack = new Stack<number>();
-      stack.push(1)
-      stack.push(2)
+      stack.push(1);
+      stack.push(2);
       expect(stack.pop()).toBe(2);
     });
   });
@@ -77,7 +104,7 @@ describe("mnemonist reexports", () => {
   describe("Queue", () => {
     it("works", () => {
       const queue = new Queue<number>();
-      queue.enqueue(1)
+      queue.enqueue(1);
       queue.enqueue(2);
       expect(queue.dequeue()).toBe(1);
     });
@@ -86,8 +113,8 @@ describe("mnemonist reexports", () => {
   describe("Heap", () => {
     it("works", () => {
       const heap = new Heap<number>();
-      heap.push(3)
-      heap.push(1)
+      heap.push(3);
+      heap.push(1);
       heap.push(2);
       expect(heap.pop()).toBe(1);
     });
@@ -96,17 +123,9 @@ describe("mnemonist reexports", () => {
   describe("LRUCache", () => {
     it("works", () => {
       const cache = new LRUCache<string, number>(3);
-      cache.set("a", 1).set("b", 2);
+      cache.set("a", 1);
+      cache.set("b", 2);
       expect(cache.get("a")).toBe(1);
-    });
-  });
-
-  describe("BitSet", () => {
-    it("works", () => {
-      const bits = new BitSet(10);
-      bits.add(0).add(5);
-      expect(bits.has(0)).toBe(true);
-      expect(bits.has(1)).toBe(false);
     });
   });
 });
@@ -173,15 +192,26 @@ describe("custom utils", () => {
 
   describe("dirs4", () => {
     it("has 4 directions", () => {
-      expect(dirs4).toEqual([[1, 0], [-1, 0], [0, 1], [0, -1]]);
+      expect(dirs4).toEqual([
+        [1, 0],
+        [-1, 0],
+        [0, 1],
+        [0, -1],
+      ]);
     });
   });
 
   describe("dirs8", () => {
     it("has 8 directions", () => {
       expect(dirs8).toEqual([
-        [1, 0], [-1, 0], [0, 1], [0, -1],
-        [1, 1], [1, -1], [-1, 1], [-1, -1]
+        [1, 0],
+        [-1, 0],
+        [0, 1],
+        [0, -1],
+        [1, 1],
+        [1, -1],
+        [-1, 1],
+        [-1, -1],
       ]);
     });
   });

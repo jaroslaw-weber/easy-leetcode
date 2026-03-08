@@ -406,6 +406,17 @@ export function createGrid<T = number>(rows: number, cols: number, fillValue: T 
 }
 
 /**
+ * Get grid dimensions (rows and cols)
+ * @param grid - 2D array
+ * @returns { rows, cols } object
+ * @example getGridSize([[1,2],[3,4]]) // { rows: 2, cols: 2 }
+ */
+export function getGridSize(grid: unknown[][]): { rows: number; cols: number } {
+  if (grid.length === 0) return { rows: 0, cols: 0 };
+  return { rows: grid.length, cols: grid[0]?.length ?? 0 };
+}
+
+/**
  * Convert grid to string for debugging
  * @param grid - 2D array to stringify
  * @param cellWidth - Width of each cell (default 2)

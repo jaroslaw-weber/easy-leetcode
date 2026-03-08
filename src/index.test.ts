@@ -9,6 +9,7 @@ import {
   dirs8,
   createGrid,
   gridToString,
+  getGridSize,
   ListNode,
   getListLength,
   getTail,
@@ -269,6 +270,28 @@ describe("custom utils", () => {
 
     it("handles empty grid", () => {
       expect(gridToString([])).toBe("");
+    });
+  });
+
+  describe("getGridSize", () => {
+    it("returns dimensions for non-empty grid", () => {
+      const grid = [
+        [1, 2, 3],
+        [4, 5, 6],
+      ];
+      expect(getGridSize(grid)).toEqual({ rows: 2, cols: 3 });
+    });
+
+    it("returns { rows: 0, cols: 0 } for empty grid", () => {
+      expect(getGridSize([])).toEqual({ rows: 0, cols: 0 });
+    });
+
+    it("returns correct size for single row", () => {
+      expect(getGridSize([[1, 2, 3, 4]])).toEqual({ rows: 1, cols: 4 });
+    });
+
+    it("returns correct size for single column", () => {
+      expect(getGridSize([[1], [2], [3]])).toEqual({ rows: 3, cols: 1 });
     });
   });
 
